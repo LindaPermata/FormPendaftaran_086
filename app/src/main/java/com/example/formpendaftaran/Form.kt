@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -26,20 +28,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+
 @Composable
 fun FormulirPendaftaran(modifier: Modifier = Modifier) {
-
     var nama by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
     var jenisKelamin by remember { mutableStateOf("") }
     var status by remember { mutableStateOf("") }
 
+
     val jenisList = listOf("Laki-laki", "Perempuan")
     val statusList = listOf("Janda", "Lajang", "Duda")
+
 
     Column(
         modifier = modifier
@@ -47,6 +52,7 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
             .background(Color(0xFFF6E6FF))
             .verticalScroll(rememberScrollState())
     ) {
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -59,10 +65,10 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
                 text = "Formulir Pendaftaran",
                 color = Color.White,
                 fontSize = 28.sp,
-                //fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
+
 
         Card(
             modifier = Modifier
@@ -72,6 +78,7 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
+            // Isi form
             Column(
                 modifier = Modifier
                     .padding(dimensionResource(R.dimen.padding_medium))
@@ -87,8 +94,9 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp)) // Jarak antar elemen
 
+                // Bagian pilihan jenis kelamin
                 Text("JENIS KELAMIN", fontWeight = FontWeight.SemiBold)
                 jenisList.forEach { item ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -100,8 +108,9 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp)) // Tambahan untuk spasi
 
+                // Bagian pilihan status perkawinan
                 Text("STATUS PERKAWINAN", fontWeight = FontWeight.SemiBold)
                 statusList.forEach { item ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -113,8 +122,9 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp)) // Tambahan untuk spasi
 
+                // Bagian input alamat
                 Text("ALAMAT", fontWeight = FontWeight.SemiBold)
                 OutlinedTextField(
                     value = alamat,
@@ -124,8 +134,19 @@ fun FormulirPendaftaran(modifier: Modifier = Modifier) {
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(24.dp)
+                Spacer(modifier = Modifier.height(24.dp)) // Tambahan untuk spasi
+
+                // Tombol submit
+                Button(
+                    onClick = { },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8A2BE2))
+                ) {
+                    Text(stringResource(R.string.submit), color = Color.White)
+                }
+            }
         }
-
-
-
+    }
+}
